@@ -77,7 +77,8 @@
     position: relative;
 
     table {
-      min-height: 300px;
+      min-height: 110px;
+      transition: 0.2s ease-in-out;
     }
   }
 

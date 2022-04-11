@@ -1,0 +1,15 @@
+<div class="container">
+  <div rtl>
+    <h1 class="main-heading">{{ 'stms.orders.title' | translate }}</h1>
+    <div class="actions mb-3">
+      <a mat-raised-button class="actions-main" color="primary" (click)="getOrders($event)">
+        {{ 'stms.orders.get-orders' | translate }}
+      </a>
+    </div>
+    <st-orders-table
+            class="d-block mb-3"
+            [orders]="orders$ | async"
+            (favChanged)="onFavChanged($event)">
+    </st-orders-table>
+  </div>
+</div>

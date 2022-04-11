@@ -43,3 +43,5 @@
   @include angular-material-theme($st-nature-theme);
   @include custom-components-theme($st-nature-theme);
 }
+
+@import "src/assets/styles/table";

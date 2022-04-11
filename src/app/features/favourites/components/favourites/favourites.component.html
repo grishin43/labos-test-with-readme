@@ -1,0 +1,29 @@
+<div class="container">
+    <div rtl>
+        <h1 class="main-heading mb-3">{{'stms.menu.favourites' | translate }}</h1>
+        <h3 class="mb-3">{{'stms.menu.orders' | translate }}</h3>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Search by orderName</mat-label>
+            <input matInput
+                   placeholder="orderName"
+                   [formControl]="orderNameFilter">
+        </mat-form-field>
+        <st-orders-table
+                class="d-block mb-3"
+                [orders]="filteredOrdersCollection$ | async"
+                (favChanged)="onOrderFavChanged($event)">
+        </st-orders-table>
+        <h3 class="mb-3">{{'stms.menu.patients' | translate }}</h3>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Search by firstName</mat-label>
+            <input matInput
+                   placeholder="firstName"
+                   [formControl]="patientNameFilter">
+        </mat-form-field>
+        <st-patients-table
+                class="d-block mb-3"
+                [patients]="filteredPatientCollection$ | async"
+                (favChanged)="onPatientFavChanged($event)">
+        </st-patients-table>
+    </div>
+</div>

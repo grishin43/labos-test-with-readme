@@ -50,9 +50,11 @@ import {faMediumM, faGithub} from "@fortawesome/free-brands-svg-icons";
 import {BigInputComponent} from "./components/big-input/big-input/big-input.component";
 import {BigInputActionComponent} from "./components/big-input/big-input-action/big-input-action.component";
 import {RtlSupportDirective} from "./directives/rtl-support/rtl-support.directive";
-import {PatientsTableComponent} from "./components/patients-table/patients-table.component";
+import {PatientsTableComponent} from "./components/tables/patients-table/patients-table.component";
 import {MatTableModule} from "@angular/material/table";
-import { TableShadeComponent } from './components/table-shade/table-shade.component';
+import { TableShadeComponent } from './components/tables/table-shade/table-shade.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { OrdersTableComponent } from './components/tables/orders-table/orders-table.component';
 
 @NgModule({
     imports: [
@@ -77,6 +79,7 @@ import { TableShadeComponent } from './components/table-shade/table-shade.compon
         MatSlideToggleModule,
         MatDividerModule,
         MatTableModule,
+        MatPaginatorModule,
 
         FontAwesomeModule
     ],
@@ -85,7 +88,8 @@ import { TableShadeComponent } from './components/table-shade/table-shade.compon
         BigInputActionComponent,
         RtlSupportDirective,
         PatientsTableComponent,
-        TableShadeComponent
+        TableShadeComponent,
+        OrdersTableComponent
     ],
     exports: [
         CommonModule,
@@ -118,7 +122,8 @@ import { TableShadeComponent } from './components/table-shade/table-shade.compon
         BigInputComponent,
         BigInputActionComponent,
         RtlSupportDirective,
-        PatientsTableComponent
+        PatientsTableComponent,
+        OrdersTableComponent
     ]
 })
 export class SharedModule {

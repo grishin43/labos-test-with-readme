@@ -75,6 +75,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import {ApiService} from "./api/service/api.service";
 import {PatientsEffects} from "../features/patients/store/patients.effects";
+import {OrdersEffects} from "../features/orders/store/orders.effects";
 
 export {
   TitleService,
@@ -124,7 +125,7 @@ export function httpLoaderFactory(http: HttpClient) {
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([AuthEffects, SettingsEffects, PatientsEffects]),
+    EffectsModule.forRoot([AuthEffects, SettingsEffects, PatientsEffects, OrdersEffects]),
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({

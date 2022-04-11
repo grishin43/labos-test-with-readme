@@ -8,6 +8,7 @@
   "stms.menu.login": "Sign in",
   "stms.menu.logout": "Logout",
   "stms.menu.settings": "Settings",
+  "stms.menu.favourites": "Favourites",
 
   "stms.settings.animations.elements": "Navigation page elements slide up",
   "stms.settings.animations.page": "Navigation whole page transition",

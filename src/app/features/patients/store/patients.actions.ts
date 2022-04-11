@@ -6,7 +6,7 @@ export enum PatientsActions {
     RECEIVE = 'Receive Patients',
     RECEIVED_SUCCESSFULLY = 'Received Patients Successfully',
     NOT_RECEIVED = 'Patients Retrieval Error',
-    TOGGLE_PATIENT_FAVOURITE = 'Toggle Patient Favourite Field'
+    TOGGLE_FAVOURITE = 'Toggle Patient Favourite Field'
 }
 
 export const receivePatients = createAction(
@@ -24,6 +24,6 @@ export const patientsNotReceived = createAction(
 )
 
 export const togglePatientFavourite = createAction(
-    PatientsActions.TOGGLE_PATIENT_FAVOURITE,
+    PatientsActions.TOGGLE_FAVOURITE,
     props<Patient>()
 )

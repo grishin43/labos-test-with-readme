@@ -1,0 +1,90 @@
+<div class="table-wrapper">
+    <div class="mat-elevation-z8">
+        <table mat-table
+               [dataSource]="dataSource"
+               multiTemplateDataRows
+               class="mat-elevation-z8">
+            <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                <th mat-header-cell
+                    *matHeaderCellDef
+                    [ngStyle]="{
+                        'width': column === 'actions' ? '1px' : 'auto'
+                    }">
+                    <ng-container *ngIf="column !== 'actions'">
+                        {{column | titlecase}}
+                    </ng-container>
+                </th>
+                <td mat-cell
+                    *matCellDef="let element">
+                    <ng-container *ngIf="column === 'actions'; else regularTd">
+                        <button style="min-width: auto;"
+                                mat-raised-button
+                                [color]="element?.favourite ? 'warn' : 'primary'"
+                                (click)="onFavClick($event, element)">
+                            <fa-icon icon="star"></fa-icon>
+                        </button>
+                    </ng-container>
+                    <ng-template #regularTd>
+                        <ng-container [ngSwitch]="column">
+                            <ng-container *ngSwitchCase="'status'">
+                                {{element[column]?.name}}
+                            </ng-container>
+                            <ng-container *ngSwitchCase="'creationDate'">
+                                {{element[column]?.dateTime}}
+                            </ng-container>
+                            <ng-container *ngSwitchDefault>
+                                {{element[column]}}
+                            </ng-container>
+                        </ng-container>
+                    </ng-template>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                    <div class="element-detail"
+                         [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        <ul class="list-unstyled">
+                            <li *ngIf="element.orderNum">
+                                <span>orderNum:</span>
+                                <span>{{element.orderNum}}</span>
+                            </li>
+                            <li *ngIf="element.orderName">
+                                <span>orderName:</span>
+                                <span>{{element.orderName}}</span>
+                            </li>
+                            <li *ngIf="element.status">
+                                <span>status:</span>
+                                <span>{{element.status?.name}}</span>
+                            </li>
+                            <li *ngIf="element.patient">
+                                <span>patient:</span>
+                                <span>{{element.patient?.fullName || '-'}}</span>
+                            </li>
+                            <li *ngIf="element.creationDate">
+                                <span>dateTime:</span>
+                                <span>{{element.creationDate?.dateTime}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                class="element-row"
+                [class.expanded-row]="expandedElement === element"
+                (click)="expandedElement = expandedElement === element ? null : element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+        </table>
+        <mat-paginator
+                [pageSizeOptions]="pageSizeOptions"
+                showFirstLastButtons>
+        </mat-paginator>
+    </div>
+    <st-table-shade
+            [noData]="!ordersData?.data?.length"
+            [loading]="ordersData?.loading">
+    </st-table-shade>
+</div>

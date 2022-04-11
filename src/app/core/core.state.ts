@@ -17,12 +17,15 @@ import { SettingsState } from './settings/settings.model';
 import {patientsReducers} from "../features/patients/store/patients.reducers";
 import {ICollectionData} from "../shared/models/search-response.model";
 import {Patient} from "../shared/models/patient.model";
+import {ordersReducers} from "../features/orders/store/orders.reducers";
+import {Order} from "../shared/models/order.model";
 
 export const reducers: ActionReducerMap<AppState> = {
   auth: authReducer,
   settings: settingsReducer,
   router: routerReducer,
-  patients: patientsReducers
+  patients: patientsReducers,
+  orders: ordersReducers
 };
 
 export const metaReducers: MetaReducer<AppState>[] = [
@@ -53,5 +56,6 @@ export interface AppState {
   auth: AuthState;
   settings: SettingsState;
   router: RouterReducerState<RouterStateUrl>;
-  patients: ICollectionData<Patient>
+  patients: ICollectionData<Patient>,
+  orders: ICollectionData<Order>
 }
